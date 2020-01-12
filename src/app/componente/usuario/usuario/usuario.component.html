@@ -1,0 +1,14 @@
+<table class="table">
+    <thead class="thread-dak">
+        <th scope="col">ID</th>
+        <th scope="col">Nome</th>
+        <th scope="col">CPF</th>
+    </thead>
+    <tbody>
+        <tr *ngFor="let student of students">
+            <td>{{student.id}}</td>
+            <td>{{student.nome}}</td>
+            <td>{{student.cpf}}</td>
+        </tr>
+    </tbody>
+</table>
