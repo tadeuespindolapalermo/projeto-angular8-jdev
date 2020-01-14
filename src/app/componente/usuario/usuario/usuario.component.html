@@ -9,6 +9,7 @@
             <td>{{student.id}}</td>
             <td>{{student.nome}}</td>
             <td>{{student.cpf}}</td>
+            <td><button (click)="deletarUsuario(student.id)" class="btn btn-primary">Delete</button></td>
         </tr>
     </tbody>
 </table>
