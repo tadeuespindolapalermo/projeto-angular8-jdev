@@ -1,3 +1,15 @@
+<br /><br />
+<form class="form-inline">   
+    <div class="form-group mx-sm-3 mb-2">        
+        <input type="text" class="form-control" id="nome" name="name" 
+        [(ngModel)]="nome" placeholder="Pesquisar por nome">
+    </div>
+    <button type="button" (click)="consultarUsuarioPorNome()" class="btn btn-primary mb-2">Buscar</button>
+    <div style="padding-left: 15px;">
+        <button type="button" (click)="carregarUsuarios()" class="btn btn-primary mb-2">Todos</button>
+    </div>
+</form>
+<br /><br />
 <table class="table">
     <thead class="thread-dak">
         <th scope="col">ID</th>

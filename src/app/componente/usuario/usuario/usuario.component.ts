@@ -11,6 +11,7 @@ import { User } from 'src/app/model/user';
 export class UsuarioComponent implements OnInit {
 
   students : Observable<User[]>;
+  nome : String;
 
   constructor(private usuarioSevice : UsuarioService) { }
 
@@ -28,6 +29,12 @@ export class UsuarioComponent implements OnInit {
     this.usuarioSevice.deletarUsuario(id).subscribe(data => {
       console.log("Retorno do método delete: " + data);
       this.carregarUsuarios();
+    });
+  }
+
+  consultarUsuarioPorNome() {
+    this.usuarioSevice.consultarUsuarioPorNome(this.nome).subscribe(data => {
+      this.students = data;
     });
   }
 
