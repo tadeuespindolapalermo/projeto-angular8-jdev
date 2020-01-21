@@ -22,4 +22,8 @@ export class UsuarioService {
     return this.http.get(AppConstants.baseUrl + "usuarioPorNome/" + nome);
   }
 
+  getStudent(id: String) : Observable<any>  {
+    return this.http.get<any>(AppConstants.baseUrl + id);
+  }
+
 }

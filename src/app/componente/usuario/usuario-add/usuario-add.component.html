@@ -1,1 +1,39 @@
-<p>Tela de usuário</p>
+<h3 style="padding: 10px;">Tela de usuário</h3>
+
+<form style="padding: 10px;">
+    <div class="form-row">
+        <div class="form-group col-md-1">
+            <label for="id">ID</label>
+            <input type="text" [(ngModel)]="usuario.id" class="form-control" id="id" readonly="true" name="id" autocomplete="false"/>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-12">
+            <label for="nome">Nome</label>
+            <input type="text" [(ngModel)]="usuario.nome" class="form-control" id="nome" required="true" name="nome" autocomplete="false"/>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="login">Login</label>
+            <input type="text" [(ngModel)]="usuario.login" class="form-control" id="login" required="true" name="login" autocomplete="false"/>
+        </div>
+        <div class="form-group col-md-6">
+            <label for="senha">Senha</label>
+            <input type="password" [(ngModel)]="usuario.senha" class="form-control" id="senha" required="true" name="senha" autocomplete="false"/>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-3">
+            <label for="cpf">CPF</label>
+            <input type="text" [(ngModel)]="usuario.cpf" class="form-control" id="cpf" required="true" name="cpf" autocomplete="false"/>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <button type="button" class="btn btn-primary" [routerLink]="['/userList']" routerLinkActive="router-link-active">Voltar</button>
+            <button type="button" class="btn btn-primary" style="margin-left: 10px;">Novo</button>
+            <button type="button" class="btn btn-primary" (click)="salvarUsuario()" style="margin-left: 10px;">Salvar</button>
+        </div>
+    </div>
+</form>
