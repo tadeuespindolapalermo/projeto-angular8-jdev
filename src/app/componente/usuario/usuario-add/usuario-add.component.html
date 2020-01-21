@@ -32,7 +32,7 @@
     <div class="form-row">
         <div class="form-group col-md-6">
             <button type="button" class="btn btn-primary" [routerLink]="['/userList']" routerLinkActive="router-link-active">Voltar</button>
-            <button type="button" class="btn btn-primary" style="margin-left: 10px;">Novo</button>
+            <button type="button" class="btn btn-primary" (click)="novo()" style="margin-left: 10px;">Novo</button>
             <button type="button" class="btn btn-primary" (click)="salvarUsuario()" style="margin-left: 10px;">Salvar</button>
         </div>
     </div>

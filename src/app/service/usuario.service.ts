@@ -26,4 +26,12 @@ export class UsuarioService {
     return this.http.get<any>(AppConstants.baseUrl + id);
   }
 
+  salvarUsuario(user: any) : Observable<any> {
+    return this.http.post<any>(AppConstants.baseUrl, user);
+  }
+
+  atualizarUsuario(user: any) : Observable<any> {
+    return this.http.put<any>(AppConstants.baseUrl, user);
+  }
+
 }
