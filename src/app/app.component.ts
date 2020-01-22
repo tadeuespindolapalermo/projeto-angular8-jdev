@@ -25,5 +25,13 @@ export class AppComponent implements OnInit {
     localStorage.clear();
     this.router.navigate(['login']);
   }
+
+  public esconderBarra() {
+    if (localStorage.getItem('token') !== null && 
+        localStorage.getItem('token').toString().trim() !== null) {
+          return false;
+    }
+    return true;
+  }
   
 }
