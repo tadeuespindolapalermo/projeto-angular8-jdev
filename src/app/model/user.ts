@@ -4,4 +4,5 @@ export class User {
     login : String;    
     nome : String;
     cpf : String;
+    senha : String;
 }
