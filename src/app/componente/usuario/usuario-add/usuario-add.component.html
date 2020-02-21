@@ -30,9 +30,36 @@
         <div class="form-group col-md-3">
             <label for="cpf">CPF</label>
             <span style="color: red; font-size: 23px;" *ngIf="cpfValidate.invalid"> *</span>
-            <input type="text" [(ngModel)]="usuario.cpf" #cpfValidate="ngModel" class="form-control" id="cpf" required="true" name="cpf" autocomplete="false"/>
+            <input type="text" mask="000.000.000-00" [(ngModel)]="usuario.cpf" #cpfValidate="ngModel" class="form-control" id="cpf" required="true" name="cpf" autocomplete="false"/>
         </div>
     </div>
+
+    <div class="card text-center">
+        <div class="card-header">
+            Telefone Contato
+        </div>
+        <div class="card-body" style="padding-left: 1px;">
+            <div class="form-row">
+                <div class="form-group col-md-3">
+                    <input type="text" mask="(00) 0 0000-0000" class="form-control" [(ngModel)]="telefone.numero" id="numero" name="numero"/>
+                </div>  
+                <div class="form-group col-md-2">
+                    <button class="btn btn-primary" (click)="addFone()">Adicionar</button>
+                </div>               
+            </div>
+        </div>
+    </div>    
+
+    <table class="table">
+        <tbody>
+            <tr *ngFor="let fone of usuario.telefones; let i = index">
+                <td>{{fone.id}}</td>
+                <td>{{fone.numero | mask:'(00) 0 0000-0000'}}</td>
+                <td><button class="btn btn-danger" (click)="deletarTelefone(fone.id, i)">Delete</button></td>
+            </tr>
+        </tbody>
+    </table>
+
     <div class="form-row">
         <div class="form-group col-md-6">
             <button type="button" class="btn btn-primary" [routerLink]="['/userList']" routerLinkActive="router-link-active">Voltar</button>

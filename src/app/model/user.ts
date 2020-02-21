@@ -1,3 +1,5 @@
+import { Telefone } from './telefone';
+
 export class User {
 
     id : Number;
@@ -5,4 +7,5 @@ export class User {
     nome : String;
     cpf : String;
     senha : String;
+    telefones :Array<Telefone>
 }
