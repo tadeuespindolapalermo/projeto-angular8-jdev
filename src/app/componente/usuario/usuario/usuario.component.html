@@ -18,7 +18,7 @@
         <th scope="col">Editar</th>
     </thead>
     <tbody>
-        <tr *ngFor="let student of students">
+        <tr *ngFor="let student of students | paginate: { itemsPerPage:5, currentPage:p }">
             <td>{{student.id}}</td>
             <td>{{student.nome}}</td>
             <td>{{student.cpf}}</td>
@@ -27,3 +27,8 @@
         </tr>
     </tbody>
 </table>
+
+<div class="text-center">
+    <pagination-controls (pageChange)="p = $event" previousLabel="Voltar" nextLabel="Avançar"
+        responsive="true"></pagination-controls>
+</div>
