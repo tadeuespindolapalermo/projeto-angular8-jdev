@@ -10,34 +10,60 @@ import { User } from 'src/app/model/user';
 })
 export class UsuarioComponent implements OnInit {
 
-  students : Observable<User[]>;
+  students : Array<User[]>;
   nome : String;
+  total: Number;
 
   constructor(private usuarioSevice : UsuarioService) { }
 
   carregarUsuarios() {
     this.usuarioSevice.getStudentList().subscribe(data  => {
-      this.students = data;
+      this.students = data.content;
+      this.total = data.totalElements;
     });
+  }
+
+  carregarUsuariosPage(pagina: any) {
+    if (this.nome !== '') {
+      this.usuarioSevice.consultarUsuarioPorNomePaginado(this.nome, (pagina - 1)).subscribe(data => {
+        this.students = data.content;
+        this.total = data.totalElements;
+      });
+    } else {
+      this.usuarioSevice.getStudentListPage(pagina - 1).subscribe(data  => {
+        this.students = data.content;
+        this.total = data.totalElements;
+      });
+    }   
   }
 
   ngOnInit() {
     this.carregarUsuarios();
   }
 
-  deletarUsuario(id: Number) {
+  deletarUsuario(id: Number, index: any) {
     if (confirm('Deseja mesmo remover?')) {
       this.usuarioSevice.deletarUsuario(id).subscribe(data => {
-        console.log("Retorno do método delete: " + data);
-        this.carregarUsuarios();
+        //console.log("Retorno do método delete: " + data);
+        this.students.splice(index, 1); // remove da tela
+        //this.carregarUsuarios();
       });
     }
   }
 
   consultarUsuarioPorNome() {
-    this.usuarioSevice.consultarUsuarioPorNome(this.nome).subscribe(data => {
-      this.students = data;
-    });
+    if (this.nome === '' ) {
+      this.carregarUsuarios();
+    } else {
+      this.usuarioSevice.consultarUsuarioPorNome(this.nome).subscribe(data => {
+        this.students = data.content;
+        this.total = data.totalElements;
+      });
+    }    
+  }
+
+  carregarPagina(pagina: any) {
+    this.carregarUsuariosPage(pagina);
   }
 
 }

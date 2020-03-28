@@ -5,7 +5,7 @@
         [(ngModel)]="nome" placeholder="Pesquisar por nome">
     </div>
     <button type="button" (click)="consultarUsuarioPorNome()" class="btn btn-primary mb-2">Buscar</button>
-    <button type="button" (click)="carregarUsuarios()" style="margin-left: 5px;" class="btn btn-primary mb-2">Todos</button>
+    <!--<button type="button" (click)="carregarUsuarios()" style="margin-left: 5px;" class="btn btn-primary mb-2">Todos</button>-->
     <button type="button" [routerLink]="['/usuarioAdd']" routerLinkActive="router-link-active" style="margin-left: 5px;" class="btn btn-success mb-2">Novo</button>    
 </form>
 <br /><br />
@@ -18,17 +18,18 @@
         <th scope="col">Editar</th>
     </thead>
     <tbody>
-        <tr *ngFor="let student of students | paginate: { itemsPerPage:5, currentPage:p }">
+        <tr *ngFor="let student of students | paginate: { itemsPerPage:5, currentPage: p, totalItems : total }; let i = index">  
             <td>{{student.id}}</td>
             <td>{{student.nome}}</td>
             <td>{{student.cpf}}</td>
-            <td><button (click)="deletarUsuario(student.id)" class="btn btn-primary">Delete</button></td>
+            <td><button (click)="deletarUsuario(student.id, i)" class="btn btn-primary">Delete</button></td>
             <td><button [routerLink]="['/usuarioAdd', student.id]" routerLinkActive="router-link-active" class="btn btn-warning">Editar</button></td>
         </tr>
     </tbody>
 </table>
 
+
 <div class="text-center">
-    <pagination-controls (pageChange)="p = $event" previousLabel="Voltar" nextLabel="Avançar"
-        responsive="true"></pagination-controls>
+    <pagination-controls (pageChange)="carregarPagina(p = $event);"
+     previousLabel = "Voltar" nextLabel = "Avançar" responsive="true"></pagination-controls>    
 </div>

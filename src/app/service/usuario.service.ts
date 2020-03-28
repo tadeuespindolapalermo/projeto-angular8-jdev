@@ -14,12 +14,19 @@ export class UsuarioService {
     return this.http.get<any>(AppConstants.baseUrl);
   }
 
+  getStudentListPage(pagina) : Observable<any> {
+    return this.http.get<any>(AppConstants.baseUrl + 'page/' + pagina);
+  }
+
   deletarUsuario(id: Number) : Observable<any> {
     return this.http.delete(AppConstants.baseUrl + id, {responseType : 'text'});
   }
 
   consultarUsuarioPorNome(nome: String) : Observable<any> {
     return this.http.get(AppConstants.baseUrl + "usuarioPorNome/" + nome);
+  }
+  consultarUsuarioPorNomePaginado(nome: String, page: number) : Observable<any> {
+    return this.http.get(AppConstants.baseUrl + "usuarioPorNome/" + nome + "/page/" + page);
   }
 
   getStudent(id: String) : Observable<any>  {
