@@ -1,3 +1,4 @@
+import { Profissao } from './../../../model/Profissao';
 import { Component, OnInit, Injectable } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { User } from 'src/app/model/User';
@@ -86,12 +87,19 @@ export class UsuarioAddComponent implements OnInit {
 
   telefone = new Telefone();
 
+  profissoes: Array<Profissao>;
+
 
   constructor(private routeActive: ActivatedRoute, private userService: UsuarioService) {
   }
 
 
   ngOnInit() {
+
+    this.userService.getProfissaoList().subscribe(data => {
+      this.profissoes = data;
+    });
+    
     let id = this.routeActive.snapshot.paramMap.get('id');
 
     if (id != null) {

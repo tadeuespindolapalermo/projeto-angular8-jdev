@@ -4,6 +4,8 @@ export class AppConstants {
 
 	public static get baseLogin(): string { return this.baseServidor + "spring-rest-api/login" }
 
-	public static get baseUrl(): string {return this.baseServidor + "spring-rest-api/usuario/"}
+	public static get baseUrl(): string { return this.baseServidor + "spring-rest-api/usuario/" }
+
+	public static get getBaseUrlPath() : string  { return this.baseServidor + "spring-rest-api/" }
 
 }

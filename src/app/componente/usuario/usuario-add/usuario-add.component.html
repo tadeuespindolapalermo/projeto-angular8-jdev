@@ -49,20 +49,34 @@
     </div>
 
    
-   <div class="form-group col-md-3">
-    <label for="dataNascimento">Data Nasc.</label>
-     <span style="color: red; font-size: 23px;"> *</span>
-     <div class="input-group">
-         <input name="dataNascimento" type="text" class="form-control" placeholder="dd/mm/yyyy"
-           ngbDatepicker #dataNascimento="ngbDatepicker" [(ngModel)] = "usuario.dataNascimento"
-           id="dataNascimento" required="true">
-         <div class="input-group-append">
-            <button class="btn btn-primary" (click)="dataNascimento.toggle()" type="button"></button>
-         </div>
-     </div>
-   </div> 
-  </div>
+    <div class="form-group col-md-3">
+      <label for="dataNascimento">Data Nasc.</label>
+      <span style="color: red; font-size: 23px;"> *</span>
+      <div class="input-group">
+        <input name="dataNascimento" type="text" class="form-control" placeholder="dd/mm/yyyy"
+            ngbDatepicker #dataNascimento="ngbDatepicker" [(ngModel)] = "usuario.dataNascimento"
+            id="dataNascimento" required="true">
+        <div class="input-group-append">
+          <button class="btn btn-primary" (click)="dataNascimento.toggle()" type="button"></button>
+        </div>
+      </div>
+    </div> 
 
+    <div class="form-group col-md-3">
+      <label for="profissao">Profissão</label>
+      <span style="color: red; font-size: 23px;" *ngIf="profissaoValidate.invalid"> *</span>
+      <select [(ngModel)]="usuario.profissao.id" id="profissao" name="profissao" 
+        #profissaoValidate="ngModel" class="form-control" required="true">
+        <option [ngValue]="p.id" *ngFor="let p of profissoes">{{p.descricao}}</option>
+      </select>
+    </div>
+
+    <div class="form-group col-md-3">
+      <label for="salario">Salário</label>
+      <span style="color: red; font-size: 23px;"> *</span>
+      <input [(ngModel)]="usuario.salario" class="form-control" name="salario" id="salario" currencyMask [options]="{prefix: 'R$', thousands: '.', decimal: ','}" />
+    </div>
+  </div>
 
   <div class="card text-center">
     <div class="card-header">
