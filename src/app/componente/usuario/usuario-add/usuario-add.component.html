@@ -1,83 +1,111 @@
-<h3 style="padding: 10px;">Tela de usuário</h3>
+<h3 style="padding: 10px;">Tela de usuario</h3>
 
-<form style="padding: 10px;" #formValidate="ngForm">
-    <div class="form-row">
-        <div class="form-group col-md-1">
-            <label for="id">ID</label>
-            <input type="text" [(ngModel)]="usuario.id" class="form-control" id="id" readonly="true" name="id" autocomplete="false"/>
-        </div>
+<form style="padding: 10px" #formValidate="ngForm">
+
+  <div class="form-row">
+    <div class="form-group col-md-1">
+      <label for="id">ID</label>
+      <input type="text" [(ngModel)]="usuario.id" class="form-control" id="id" readonly="true" name="id"
+             autocomplete="false">
+
     </div>
-    <div class="form-row">
-        <div class="form-group col-md-12">
-            <label for="nome">Nome</label>
-            <span style="color: red; font-size: 23px;" *ngIf="nomeValidate.invalid"> *</span>
-            <input type="text" [(ngModel)]="usuario.nome" #nomeValidate="ngModel" class="form-control" id="nome" required="true" name="nome" autocomplete="false"/>
-        </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col-md-12">
+      <label for="nome">Nome</label>
+      <span style="color: red; font-size: 23px;" *ngIf="nomeValidate.invalid"> *</span>
+      <input type="text" [(ngModel)]="usuario.nome" #nomeValidate="ngModel" class="form-control" id="nome"
+             required="true" name="nome" autocomplete="false">
+
     </div>
-    <div class="form-row">
-        <div class="form-group col-md-6">
-            <label for="login">Login</label>
-            <span style="color: red; font-size: 23px;" *ngIf="loginValidate.invalid"> *</span>
-            <input type="text" [(ngModel)]="usuario.login" #loginValidate="ngModel" class="form-control" id="login" required="true" name="login" autocomplete="false"/>
-        </div>
-        <div class="form-group col-md-6">
-            <label for="senha">Senha</label>
-            <span style="color: red; font-size: 23px;" *ngIf="senhaValidate.invalid"> *</span>
-            <input type="password" [(ngModel)]="usuario.senha" #senhaValidate="ngModel" class="form-control" id="senha" required="true" name="senha" autocomplete="false"/>
-        </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="login">E-mail ou login</label>
+      <span style="color: red; font-size: 23px;" *ngIf="loginValidate.invalid"> *</span>
+      <input type="text" [(ngModel)]="usuario.login" #loginValidate="ngModel" class="form-control" id="login"
+             name="login" required="true" autocomplete="false">
     </div>
-    <div class="form-row">
+
+
+    <div class="form-group col-md-6">
+      <label for="senha">Senha</label>
+      <span style="color: red; font-size: 23px;" *ngIf="senhaValidate.invalid"> *</span>
+      <input type="password" [(ngModel)]="usuario.senha" #senhaValidate="ngModel" class="form-control" id="senha"
+             name="senha" required="true" autocomplete="false">
+    </div>
+
+  </div>
+
+
+  <div class="form-row">
+    <div class="form-group col-md-3">
+      <label for="cpf">CPF</label>
+      <span style="color: red; font-size: 23px;" *ngIf="cpfValidate.invalid"> *</span>
+      <input type="text" mask="000.000.000-00" [(ngModel)]="usuario.cpf" #cpfValidate="ngModel" class="form-control"
+             id="cpf" name="cpf" required="true" autocomplete="false">
+    </div>
+
+   
+   <div class="form-group col-md-3">
+    <label for="dataNascimento">Data Nasc.</label>
+     <span style="color: red; font-size: 23px;"> *</span>
+     <div class="input-group">
+         <input name="dataNascimento" type="text" class="form-control" placeholder="dd/mm/yyyy"
+           ngbDatepicker #dataNascimento="ngbDatepicker" [(ngModel)] = "usuario.dataNascimento"
+           id="dataNascimento" required="true">
+         <div class="input-group-append">
+            <button class="btn btn-primary" (click)="dataNascimento.toggle()" type="button"></button>
+         </div>
+     </div>
+   </div> 
+  </div>
+
+
+  <div class="card text-center">
+    <div class="card-header">
+      Telefone Contato
+    </div>
+    <div class="card-body" style="padding-left: 1px;">
+      <div class="form-row">
         <div class="form-group col-md-3">
-            <label for="cpf">CPF</label>
-            <span style="color: red; font-size: 23px;" *ngIf="cpfValidate.invalid"> *</span>
-            <input type="text" mask="000.000.000-00" [(ngModel)]="usuario.cpf" #cpfValidate="ngModel" class="form-control" id="cpf" required="true" name="cpf" autocomplete="false"/>
+          <input type="text" mask="(00) 0 0000-0000" class="form-control" [(ngModel)]="telefone.numero" id="numero"
+                 name="numero">
         </div>
-        <div class="form-group col-md-3">
-            <label for="dataNascimento">Data de Nascimento</label>
-            <span style="color: red; font-size: 23px;"> *</span>
-            <div class="input-group">
-                <input name="dataNascimento" type="date" class="form-control" placeholder="dd/mm/yyyy"
-                    ngbDatepicker #dataNascimento="ngbDatepicker" [(ngModel)]="usuario.dataNascimento"
-                    id="dataNascimento" required="true"
-                />
-                <div class="input-group-append">
-                    <button class="btn btn-primary" (click)="dataNascimento.toggle()" type="button"></button>
-                </div>
-            </div>
+
+        <div class="form-group col-md-2">
+          <button class="btn btn-primary" (click)="addFone()">Adicionar</button>
         </div>
+      </div>
     </div>
+  </div>
 
-    <div class="card text-center">
-        <div class="card-header">
-            Telefone Contato
-        </div>
-        <div class="card-body" style="padding-left: 1px;">
-            <div class="form-row">
-                <div class="form-group col-md-3">
-                    <input type="text" mask="(00) 0 0000-0000" class="form-control" [(ngModel)]="telefone.numero" id="numero" name="numero"/>
-                </div>  
-                <div class="form-group col-md-2">
-                    <button class="btn btn-primary" (click)="addFone()">Adicionar</button>
-                </div>               
-            </div>
-        </div>
-    </div>    
+  <table class="table">
 
-    <table class="table">
-        <tbody>
-            <tr *ngFor="let fone of usuario.telefones; let i = index">
-                <td>{{fone.id}}</td>
-                <td>{{fone.numero | mask:'(00) 0 0000-0000'}}</td>
-                <td><button class="btn btn-danger" (click)="deletarTelefone(fone.id, i)">Delete</button></td>
-            </tr>
-        </tbody>
-    </table>
+    <tbody>
 
-    <div class="form-row">
-        <div class="form-group col-md-6">
-            <button type="button" class="btn btn-primary" [routerLink]="['/userList']" routerLinkActive="router-link-active">Voltar</button>
-            <button type="button" class="btn btn-primary" (click)="novo()" style="margin-left: 10px;">Novo</button>
-            <button type="button" class="btn btn-primary" [disabled]="formValidate.invalid" (click)="salvarUsuario()" style="margin-left: 10px;">Salvar</button>
-        </div>
+    <tr *ngFor="let fone of usuario.telefones; let i = index">
+      <td>{{fone.id}}</td>
+      <td>{{fone.numero | mask:'(00) 0 0000-0000'}}</td>
+      <td>
+        <button class="btn btn-danger" (click)="deletarTelefone(fone.id, i)">Delete</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+
+  <div class="form-row" style="margin-top: 20px;">
+    <div class="form-group col-md-6">
+      <button type="button" class="btn btn-primary" [routerLink]="['/userList']" routerLinkActive="router-link-active">
+        Voltar
+      </button>
+      <button type="button" class="btn btn-primary" (click)="novo()" style="margin-left: 10px;">Novo</button>
+      <button type="button" class="btn btn-primary" [disabled]="formValidate.invalid" (click)="salvarUser()"
+              style="margin-left: 10px;">Salvar
+      </button>
     </div>
+  </div>
 </form>

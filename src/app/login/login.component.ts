@@ -9,19 +9,20 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  usuario = {login: '', senha: ''}
+  usuario = { login: '', senha: '' };
 
-  constructor(private loginService: LoginServiceService, private router: Router) {}
+  constructor(private loginService: LoginServiceService, private router: Router) { }
+
 
   public login() {
-    console.log('Teste Login: ' + this.usuario.login + ' Senha: ' + this.usuario.senha)
     this.loginService.login(this.usuario);
   }
 
+
   ngOnInit() {
-    if (localStorage.getItem('token') !== null && 
-        localStorage.getItem('token').toString().trim() !== null) {
-          this.router.navigate(['home']);
+    if (localStorage.getItem('token') !== null &&
+      localStorage.getItem('token').toString().trim() !== null) {
+      this.router.navigate(['home']);
     }
   }
 

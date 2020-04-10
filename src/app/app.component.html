@@ -1,6 +1,6 @@
 
 <div id="page-content-wrapper" >
-<nav class="navbar navbar-expand-lg navbar-light bg-light" [hidden]="esconderBarra()">
+<nav class="navbar navbar-expand-lg navbar-light bg-light" [hidden]="esconderBarrar()">
 		 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
@@ -15,7 +15,7 @@
          Menu
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="nav-link" [routerLink]="['/userList']" routerLinkActive="router-link-active" >Usuário</a>
+           <a class="dropdown-item" [routerLink]="['/userList']" routerLinkActive="router-link-active" >Usuario</a>
           <a class="dropdown-item" href="#">Link 2</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="#">Link 3</a>
@@ -24,5 +24,5 @@
     </ul>
   </div>
 </nav>
-</div>
 <router-outlet></router-outlet>
+</div>

@@ -1,12 +1,13 @@
-import { Telefone } from './telefone';
+import { Telefone } from './Telefone';
 
 export class User {
+	id: Number;
+	login: String;
+	senha: String;
+	nome: String;
+	cpf: String;
+	dataNascimento: String;
 
-    id: number;
-    login: string;    
-    nome: string;
-    cpf: string;
-    senha: string;
-    telefones: Array<Telefone>;
-    dataNascimento: string;
+	telefones: Array<Telefone>;
+
 }

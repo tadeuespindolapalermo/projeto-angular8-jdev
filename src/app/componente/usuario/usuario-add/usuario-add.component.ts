@@ -2,7 +2,7 @@ import { Component, OnInit, Injectable } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { User } from 'src/app/model/User';
 import { UsuarioService } from 'src/app/service/usuario.service';
-import { Telefone } from 'src/app/model/telefone';
+import { Telefone } from 'src/app/model/Telefone';
 import { NgbDateParserFormatter, NgbDateStruct, NgbDateAdapter } from '@ng-bootstrap/ng-bootstrap';
 
 
@@ -22,18 +22,25 @@ export class FormatDateAdapter extends NgbDateAdapter<string> {
     }
     return null;
   }
+
+
   toModel(date: NgbDateStruct | null): string | null {
     return date ? date.day + this.DELIMITER + date.month + this.DELIMITER + date.year : null;
   }
 
+
 }
+
 
 @Injectable()
 export class FormataData extends NgbDateParserFormatter {
 
-  readonly DELIMITER = '/';
+  readonly DELIMITER = '/'; // 18/10/1987
+
+
 
   parse(value: string): NgbDateStruct | null {
+
     if (value) {
       let date = value.split(this.DELIMITER);
       return {
@@ -46,28 +53,32 @@ export class FormataData extends NgbDateParserFormatter {
   }
 
   format(date: NgbDateStruct): string | null {
+
     return date ? validarDia(date.day) + this.DELIMITER + validarDia(date.month) + this.DELIMITER + date.year : '';
   }
 
-  toModel(date: NgbDateStruct | null) : string | null {
+  toModel(date: NgbDateStruct | null): string | null {
     return date ? date.day + this.DELIMITER + date.month + this.DELIMITER + date.year : null;
   }
 
 }
 
+
 function validarDia(valor) {
-  if (valor.toString !== '' && parseInt(valor)  <= 9) {
+  if (valor.toString !== '' && parseInt(valor) <= 9) {
     return '0' + valor;
+  } else {
+    return valor;
   }
-  return valor;
 }
+
 
 @Component({
   selector: 'app-root',
   templateUrl: './usuario-add.component.html',
   styleUrls: ['./usuario-add.component.css'],
-  providers: [{provide: NgbDateParserFormatter, useClass: FormataData},
-              {provide: NgbDateAdapter, useClass: FormatDateAdapter}]
+  providers: [{ provide: NgbDateParserFormatter, useClass: FormataData },
+  { provide: NgbDateAdapter, useClass: FormatDateAdapter }]
 })
 export class UsuarioAddComponent implements OnInit {
 
@@ -75,50 +86,68 @@ export class UsuarioAddComponent implements OnInit {
 
   telefone = new Telefone();
 
-  constructor(private routeActive: ActivatedRoute, private usuarioService: UsuarioService) { }
+
+  constructor(private routeActive: ActivatedRoute, private userService: UsuarioService) {
+  }
+
 
   ngOnInit() {
-    let id = this.routeActive.snapshot.paramMap.get("id");
+    let id = this.routeActive.snapshot.paramMap.get('id');
+
     if (id != null) {
-      this.usuarioService.getStudent(id).subscribe(data => {
+      this.userService.getStudant(id).subscribe(data => {
         this.usuario = data;
       });
     }
+
   }
 
-  salvarUsuario() {
-    if (this.usuario.id != null && this.usuario.id.toString().trim() != null) {
-      this.usuarioService.atualizarUsuario(this.usuario).subscribe(data => {
+
+  salvarUser() {
+
+
+    if (this.usuario.id != null && this.usuario.id.toString().trim() != null) { /* Atualizando ou Editando*/
+      this.userService.updateUsuario(this.usuario).subscribe(data => {
         this.novo();
-        console.info("User atualizado: " + data);
+        console.info("User Atualizado: " + data);
       });
     } else {
-      this.usuarioService.salvarUsuario(this.usuario).subscribe(data => {
+      this.userService.salvarUsuario(this.usuario).subscribe(data => { /*Salvando um novo User */
         this.novo();
-        console.info("Gravou user: " + data);
+        console.info("Gravou User: " + data);
       });
     }
   }
 
-  deletarTelefone(id: any, i: any) {
+
+  deletarTelefone(id, i) {
+
     if (id == null) {
       this.usuario.telefones.splice(i, 1);
       return;
     }
+
+
     if (id !== null && confirm("Deseja remover?")) {
-      this.usuarioService.removerTelefone(id).subscribe(data => {
+
+      this.userService.removerTelefonte(id).subscribe(data => {
+
         this.usuario.telefones.splice(i, 1);
+
       });
     }
   }
 
+
   addFone() {
+
     if (this.usuario.telefones === undefined) {
       this.usuario.telefones = new Array<Telefone>();
     }
 
     this.usuario.telefones.push(this.telefone);
     this.telefone = new Telefone();
+
   }
 
   novo() {
@@ -127,3 +156,4 @@ export class UsuarioAddComponent implements OnInit {
   }
 
 }
+

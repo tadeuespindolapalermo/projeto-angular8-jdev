@@ -1,69 +1,81 @@
 import { Component, OnInit } from '@angular/core';
 import { UsuarioService } from 'src/app/service/usuario.service';
-import { Observable } from 'rxjs';
-import { User } from 'src/app/model/user';
+import { User } from 'src/app/model/User';
 
 @Component({
-  selector: 'app-usuario',
+  selector: 'app-root',
   templateUrl: './usuario.component.html',
   styleUrls: ['./usuario.component.css']
 })
 export class UsuarioComponent implements OnInit {
 
-  students : Array<User[]>;
-  nome : String;
-  total: Number;
+  students: Array<User[]>;
+  nome: String;
+  total: number;
+  p: number;
 
-  constructor(private usuarioSevice : UsuarioService) { }
+  constructor(private usuarioService: UsuarioService) { }
 
-  carregarUsuarios() {
-    this.usuarioSevice.getStudentList().subscribe(data  => {
+  ngOnInit() {
+
+    this.usuarioService.getStudentList().subscribe(data => {
       this.students = data.content;
       this.total = data.totalElements;
     });
+
   }
 
-  carregarUsuariosPage(pagina: any) {
-    if (this.nome !== '') {
-      this.usuarioSevice.consultarUsuarioPorNomePaginado(this.nome, (pagina - 1)).subscribe(data => {
-        this.students = data.content;
-        this.total = data.totalElements;
-      });
-    } else {
-      this.usuarioSevice.getStudentListPage(pagina - 1).subscribe(data  => {
-        this.students = data.content;
-        this.total = data.totalElements;
-      });
-    }   
-  }
 
-  ngOnInit() {
-    this.carregarUsuarios();
-  }
+  deleteUsuario(id: Number, index) {
 
-  deletarUsuario(id: Number, index: any) {
     if (confirm('Deseja mesmo remover?')) {
-      this.usuarioSevice.deletarUsuario(id).subscribe(data => {
-        //console.log("Retorno do método delete: " + data);
-        this.students.splice(index, 1); // remove da tela
-        //this.carregarUsuarios();
+
+      this.usuarioService.deletarUsuario(id).subscribe(data => {
+        //console.log("Retorno do método delete : " + data);
+
+        this.students.splice(index, 1); /*Remover da tela*/
+
+        // this.usuarioService.getStudentList().subscribe(data => {
+        //  this.students = data;
+        // });
+
       });
     }
   }
 
-  consultarUsuarioPorNome() {
-    if (this.nome === '' ) {
-      this.carregarUsuarios();
-    } else {
-      this.usuarioSevice.consultarUsuarioPorNome(this.nome).subscribe(data => {
+  consultarUser() {
+
+    if (this.nome === '') {
+      this.usuarioService.getStudentList().subscribe(data => {
         this.students = data.content;
         this.total = data.totalElements;
       });
-    }    
+    } else {
+
+      this.usuarioService.consultarUser(this.nome).subscribe(data => {
+        this.students = data.content;
+        this.total = data.totalElements;
+      });
+    }
   }
 
-  carregarPagina(pagina: any) {
-    this.carregarUsuariosPage(pagina);
+
+  carregarPagina(pagina) {
+
+
+    if (this.nome !== '') {
+      this.usuarioService.consultarUserPoPage(this.nome, (pagina - 1)).subscribe(data => {
+        this.students = data.content;
+        this.total = data.totalElements;
+      });
+    }
+    else {
+      this.usuarioService.getStudentListPage(pagina - 1).subscribe(data => {
+        this.students = data.content;
+        this.total = data.totalElements;
+      });
+    }
+
   }
 
 }

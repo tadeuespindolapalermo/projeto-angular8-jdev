@@ -8,11 +8,16 @@ import { UsuarioService } from './usuario.service';
 })
 export class GuardiaoGuard implements CanActivate {
 
-  constructor(private usuarioService : UsuarioService) { }
+
+  constructor(private userServcice: UsuarioService) {
+
+  }
+
 
   canActivate(
     next: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {      
-  return this.usuarioService.userAutenticado();
-  }  
+    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+    return this.userServcice.userAutenticado();
+  }
+
 }

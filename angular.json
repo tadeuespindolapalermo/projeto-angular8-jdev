@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "angular-rest-jdev-tadeu": {
+    "Curso-Angular-REST": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/angular-rest-jdev-tadeu",
+            "outputPath": "dist/Curso-Angular-REST",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -26,13 +26,12 @@
             "styles": [
               "node_modules/bootstrap/dist/css/bootstrap.css",
               "src/styles.css"
-            
+
             ],
             "scripts": [
-              "node_modules/jquery/dist/jquery.js",
-              "node_modules/popper.js/dist/umd/popper.js",
-              "node_modules/bootstrap/dist/js/bootstrap.js"
-            ]
+            "node_modules/jquery/dist/jquery.js",
+            "node_modules/popper.js/dist/umd/popper.js",
+            "node_modules/bootstrap/dist/js/bootstrap.js"]
           },
           "configurations": {
             "production": {
@@ -68,18 +67,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "angular-rest-jdev-tadeu:build"
+            "browserTarget": "Curso-Angular-REST:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "angular-rest-jdev-tadeu:build:production"
+              "browserTarget": "Curso-Angular-REST:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "angular-rest-jdev-tadeu:build"
+            "browserTarget": "Curso-Angular-REST:build"
           }
         },
         "test": {
@@ -94,9 +93,16 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "node_modules/bootstrap/dist/css/bootstrap.css",
+              "src/styles.css",{
+                "input": "./node_modules/bootstrap/dist/css/bootstrap.css"
+              }
+
             ],
-            "scripts": []
+            "scripts": [
+            "node_modules/jquery/dist/jquery.js",
+            "node_modules/popper.js/dist/umd/popper.js",
+            "node_modules/bootstrap/dist/js/bootstrap.js"]
           }
         },
         "lint": {
@@ -116,19 +122,19 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "angular-rest-jdev-tadeu:serve"
+            "devServerTarget": "Curso-Angular-REST:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "angular-rest-jdev-tadeu:serve:production"
+              "devServerTarget": "Curso-Angular-REST:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "angular-rest-jdev-tadeu",
+  "defaultProject": "Curso-Angular-REST",
   "cli": {
-    "analytics": "4d372f86-8743-4096-a9bf-4ef67bc8c792"
+    "analytics": "bb687602-66b7-4edd-9904-fb50436dedb4"
   }
 }
