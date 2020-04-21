@@ -10,6 +10,8 @@
 
 
   <button type="button" [routerLink]="['/usuarioAdd']" routerLinkActive="router-link-active" style="margin-left: 5px;"    class="btn btn-success mb-2">Novo</button>
+
+  <button (click)="imprimeRelatorio()" type="button" data-toggle="modal" data-target="#myModal" style="margin-left: 5px;" class="btn btn-primary mb-2">PDF</button>
   
 </form>
 
@@ -42,4 +44,18 @@
 <pagination-controls (pageChange)="carregarPagina(p = $event);"
  previousLabel = "Voltar" nextLabel = "Avançar" responsive="true"></pagination-controls>
 
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" style="min-width: 90%; min-height: 90%; height: 90%;">
+    <div class="modal-content">  
+      <div class="modal-body">
+        <iframe id="pdf" width="100%" height="500" frameborder="0" allowtransparency="true"></iframe>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>        
+      </div>
+    </div>
+  </div>
 </div>
