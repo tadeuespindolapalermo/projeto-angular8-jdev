@@ -1,3 +1,4 @@
+import { UserReport } from './../model/UserReport';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { AppConstants } from '../app-constants';
@@ -74,6 +75,12 @@ export class UsuarioService {
 
   downloadPdfRelatorio() {
     return this.http.get(AppConstants.baseUrl + 'relatorio', {responseType : 'text'}).subscribe(data => {
+      document.querySelector('iframe').src = data;
+    });
+  }
+
+  downloadPdfRelatorioParam(userreport: UserReport) {
+    return this.http.post(AppConstants.baseUrl + 'relatorio/', userreport, {responseType : 'text'}).subscribe(data => {
       document.querySelector('iframe').src = data;
     });
   }
