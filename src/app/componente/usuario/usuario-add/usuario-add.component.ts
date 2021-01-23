@@ -1,10 +1,12 @@
 import { Profissao } from './../../../model/Profissao';
 import { Component, OnInit, Injectable } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { User } from 'src/app/model/User';
+
 import { UsuarioService } from 'src/app/service/usuario.service';
-import { Telefone } from 'src/app/model/Telefone';
+
 import { NgbDateParserFormatter, NgbDateStruct, NgbDateAdapter } from '@ng-bootstrap/ng-bootstrap';
+import { User } from 'src/app/model/User';
+import { Telefone } from 'src/app/model/Telefone';
 
 
 @Injectable()
@@ -99,7 +101,7 @@ export class UsuarioAddComponent implements OnInit {
     this.userService.getProfissaoList().subscribe(data => {
       this.profissoes = data;
     });
-    
+
     let id = this.routeActive.snapshot.paramMap.get('id');
 
     if (id != null) {
